@@ -9,30 +9,99 @@ using System.Threading.Tasks;
 namespace Fountain_of_Objects.Classes
 {
     public class Player : IPlayer
-    {
-        MapLocation _playersLocation;
+    {   
+        //backing fields 
+        private MapLocation _playersLocation;
+        private bool _isDead; 
+
+        //properties
         public MapLocation playerLocation { get => _playersLocation; set => this.playerLocation = _playersLocation; }
-        
-        public bool IsDead { get ; set; }
+        public bool IsDead { get => _isDead ; set => _isDead = value; }
 
-        public void MoveEast()
+        //constructors
+        public Player (MapLocation playersLocation, bool isDead )
         {
-            throw new NotImplementedException();
+            this.playerLocation = playersLocation;
+            _isDead = isDead;
+        }
+        public Player()
+        {
+            _isDead = false;
+            _playersLocation.X = 0;
+            _playersLocation.Y = 0;
         }
 
-        public void MoveNorth()
+        //methods
+        public void MovePlayer(ITiles[,] map)
         {
-            throw new NotImplementedException();
+            Console.WriteLine();
+            //first determine where the player can move
+            
+            try
+            {
+                if (map[playerLocation.X - 1, playerLocation.Y] != null)
+                {
+                    Console.Write("You can move west");
+                }
+            }
+            catch(IndexOutOfRangeException)
+            {
+                Console.Write("The way to the west is blocked");
+            }
+            try
+            {
+                if(map[playerLocation.X + 1, playerLocation.Y] != null)
+                {
+                    Console.Write("\nYou can move to the east"); 
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.Write("\nThe way to the east is blocked."); 
+            }
+            try
+            {
+                if (map[playerLocation.X, playerLocation.Y + 1] != null)
+                {
+                    Console.Write("\nYou can move to the north.");
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.Write("\nThe way to the north is blocked.");
+            }
+            try
+            {
+                if (map[playerLocation.X, playerLocation.Y-1] != null)
+                {
+                    Console.Write("\nYou can move to the south");
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.Write("\nThe way to the south is blocked.");
+            }
+
+
+
+        }
+        private void MoveNorth()
+        {
+            _playersLocation.Y += 1;
         }
 
-        public void MoveSouth()
+        private void MoveSouth()
+        {
+            _playersLocation.Y += -1;
+        }
+
+        private void MoveWest()
+        {
+            _playersLocation.X += -1;
+        }
+        private void MoveEast()
         {
             _playersLocation.X += 1;
-        }
-
-        public void MoveWest()
-        {
-            throw new NotImplementedException();
         }
     }
 }

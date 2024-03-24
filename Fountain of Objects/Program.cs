@@ -16,8 +16,8 @@ namespace Fountain_of_Objects
 
             level.GenerateLevel();
 
-            //level.GameStart();
-            level.PrintMap();
+            level.GameStart();
+            //level.PrintMap();
             
         }
     }

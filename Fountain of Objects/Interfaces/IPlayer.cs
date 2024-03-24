@@ -12,11 +12,8 @@ namespace Fountain_of_Objects.Interfaces
         public MapLocation playerLocation { get; set; }
 
         public bool IsDead { get; set; }
-
-        void MoveNorth();
-        void MoveSouth();
-        void MoveEast();
-        void MoveWest();
+        void MovePlayer(ITiles[,] map);
+        
 
 
     }

@@ -9,7 +9,10 @@ namespace Fountain_of_Objects.Classes
 {
     public class Tiles : ITiles
     {
-        
+
+        int xSize;
+        int ySize;
+
         
     }
 

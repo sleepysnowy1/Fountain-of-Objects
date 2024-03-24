@@ -12,7 +12,8 @@ namespace Fountain_of_Objects.Classes
 {
     internal class Level : ILevel
     {
-        ITiles[,] _map = new ITiles[4, 4];
+        private ITiles[,] _map = new ITiles[4, 4];
+        private IPlayer _player = new Player();
         public List<ITiles[,]> Levels { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public ITiles[,] map
@@ -22,7 +23,7 @@ namespace Fountain_of_Objects.Classes
             get => _map;
         }
         public MapLocation fountainLocation { get; set; }
-        public IPlayer player { get; set; }
+        public IPlayer player { get => _player; set => _player = value; }
         public bool FountainFound
         {
             get => this.FountainFound; 
@@ -128,9 +129,13 @@ namespace Fountain_of_Objects.Classes
             Console.WriteLine("Fountain of Objects."); Console.ForegroundColor= ConsoleColor.White;
             //do
             //{
+            //    player.MovePlayer(map);
+            //} while(true);
 
-            //}while(true);
+            player.MovePlayer(map);
         }
+
+        
 
     }//end class
 }//end namespace
